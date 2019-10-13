@@ -1,5 +1,6 @@
 package com.geekshow.zookeeper.base;
 
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 import org.apache.zookeeper.CreateMode;
@@ -49,23 +50,43 @@ public class ZookeeperBase {
 //		String result = zk.create("/testRoot", "testRoot".getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
 //		System.out.println(result);
 		//创建子节点
-		String res = zk.create("/testRoot/children", "children data".getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-		System.out.println(res);
+//		String res = zk.create("/testRoot/children", "children data".getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+//		System.out.println(res);
+		
+//		String res = zk.create("/testRoot/children", "children data".getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
+//		System.out.println(res);
+		
+//		Thread.sleep(10000);
 		//获取节点洗信息
 //		byte[] data = zk.getData("/testRoot", false, null);
 //		System.out.println(new String(data));
 //		System.out.println(zk.getChildren("/testRoot", false));
-		
+		List<String> list = zk.getChildren("/testRoot", false);
+		for (String path : list) {
+			System.out.println(path);
+			String realPath = "/testRoot/" + path;
+			System.out.println(new String(zk.getData(realPath, false, null)));
+		}
 		//修改节点的值
 //		zk.setData("/testRoot", "modify data root".getBytes(), -1);
 //		byte[] data = zk.getData("/testRoot", false, null);
 //		System.out.println(new String(data));		
 		
 		//判断节点是否存在
-//		System.out.println(zk.exists("/testRoot/children", false));
+//		System.out.println(zk.exists("/testRoot/a1", false));
 		//删除节点
 //		zk.delete("/testRoot/children", -1);
 //		System.out.println(zk.exists("/testRoot/children", false));
+		
+		//异步删除节点
+//		zk.delete("/testRoot", -1, (int rc,String path,Object ctx)->{
+//			System.out.println(rc);
+//			System.out.println(path);
+//			System.out.println(ctx);
+//		}, "a");
+//		
+//		System.out.println("继续执行。。。。");
+//		Thread.sleep(50000);
 		
 		zk.close();
 		
