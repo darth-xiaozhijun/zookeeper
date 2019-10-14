@@ -30,7 +30,7 @@ public class ZKWatcher implements Watcher {
 	
 	
 	/** zookeeper服务器地址 */
-	public static final String CONNECTION_ADDR = "192.168.80.88:2181,192.168.80.87:2181,192.168.80.86:2181";
+	public static final String CONNECTION_ADDR = "192.168.154.128:2181,192.168.154.129:2181,192.168.154.130:2181";
 	/** 定义session失效时间 */
 	public static final int SESSION_TIMEOUT = 30000;
 	
