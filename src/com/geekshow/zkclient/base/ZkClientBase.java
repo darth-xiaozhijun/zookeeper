@@ -9,7 +9,7 @@ import org.I0Itec.zkclient.ZkConnection;
 public class ZkClientBase {
 
 	/** zookeeper地址 */
-	static final String CONNECT_ADDR = "192.168.1.171:2181,192.168.1.172:2181,192.168.1.173:2181";
+	static final String CONNECT_ADDR = "192.168.154.128:2181,192.168.154.129:2181,192.168.154.130:2181";
 	/** session超时时间 */
 	static final int SESSION_OUTTIME = 5000;//ms 
 	
@@ -19,9 +19,9 @@ public class ZkClientBase {
 		//1. create and delete方法 
 		zkc.createEphemeral("/temp");
 		zkc.createPersistent("/super/c1", true);
-		Thread.sleep(10000);
-		zkc.delete("/temp");
-		zkc.deleteRecursive("/super");
+//		Thread.sleep(10000);
+//		zkc.delete("/temp");
+//		zkc.deleteRecursive("/super");
 		
 		//2. 设置path和data 并且读取子节点和每个节点的内容
 //		zkc.createPersistent("/super", "1234");
